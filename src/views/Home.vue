@@ -1,37 +1,35 @@
 <template>
   <div>
-    <form action="submit">
-    <input type="text" v-model="title" name="searchMovie" placeholder="Find a movie" />
-    <button type="submit" @click.prevent="fetchMovieResults">Search</button>
-    </form>
+    <div class="my-4">
+      <SearchMovies />
+    </div>
 
-    <div v-for="(result, idx) in getMovieResults" :key="idx">
-      {{ result }}
+    <div class="my-4">
+      <MovieCards />
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
+import MovieCards from "@/components/MovieCards";
+import SearchMovies from "@/components/SearchMovies";
 
 export default {
-  name: 'HomePage',
+  name: "HomePage",
   data() {
     return {
-      title: '',
-    }
+      title: ""
+    };
   },
 
   computed: {
-    ...mapGetters(['getMovieResults']),
+    ...mapGetters(["getMovieResults"])
   },
 
-  methods: {
-    ...mapActions(['fetchMovies']),
-
-    fetchMovieResults() {
-      this.fetchMovies({ title: this.title });
-    }
+  components: {
+    MovieCards,
+    SearchMovies
   }
-}
+};
 </script>
