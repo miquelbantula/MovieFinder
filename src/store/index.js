@@ -21,10 +21,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    fetchMovies ({ state, commit }, { title }) {
-      axios.get(`http://www.omdbapi.com/?apikey=${state.APIKey}&s=${title}`).then(response => {
-        commit('setMovies', response);
-      })
+    fetchMovies({ state, commit }, { title }) {
+      axios.get(`http://www.omdbapi.com/?apikey=${state.APIKey}&s=${title}`)
+        .then(response => {
+          commit('setMovies', response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
     }
   },
   modules: {
