@@ -2,34 +2,35 @@
   <div>
     <form action="submit">
     <input type="text" v-model="title" name="searchMovie" placeholder="Find a movie" />
-    <button type="submit" @click.prevent="fetchMovies">Search</button>
+    <button type="submit" @click.prevent="fetchMovieResults">Search</button>
     </form>
 
-    <div v-for="(result, idx) in results" :key="idx">
+    <div v-for="(result, idx) in getMovieResults" :key="idx">
       {{ result }}
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'HomePage',
   data() {
     return {
-      APIKey: 'a3eab8c1',
-      results: [],
       title: '',
     }
   },
 
+  computed: {
+    ...mapGetters(['getMovieResults']),
+  },
+
   methods: {
-    fetchMovies() {
-      axios.get(`http://www.omdbapi.com/?apikey=${this.APIKey}&s=${this.title}`).then(response => {
-        console.log('response', response);
-        this.results = response;
-      })
+    ...mapActions(['fetchMovies']),
+
+    fetchMovieResults() {
+      this.fetchMovies({ title: this.title });
     }
   }
 }
