@@ -1,0 +1,61 @@
+<template>
+  <transition :name="transition">
+    <div v-show="isActive" class="slider-item">
+      <slot></slot>
+    </div>
+  </transition>
+</template>
+
+<script>
+export default {
+  props: {
+    idx: {
+      type: Number,
+      default: 0
+    }
+  },
+
+  computed: {
+    isActive() {
+      return this.idx === this.$parent.idx;
+    },
+
+    transition() {
+        return `slide-${this.$parent.direction}`;    }
+  }
+};
+</script>
+
+<style scoped lang="scss">
+.slider-item {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.slide-right-enter-active { animation: slideRightIn .5s }
+.slide-right-leave-active { animation: slideRightOut .5s; position: absolute; top: 0; left: 0; bottom: 0; }
+
+.slide-left-enter-active { animation: slideLeftIn .5s }
+.slide-left-leave-active { animation: slideLeftOut .5s; position: absolute; top: 0; left: 0; bottom: 0; }
+
+@keyframes slideRightIn {
+    from { transform: translateX(100%) }
+    to { transform: translateX(0) }
+}
+
+@keyframes slideRightOut {
+    from { transform: translateX(0) }
+    to { transform: translateX(-100%) }
+}
+
+@keyframes slideLeftIn {
+    from { transform: translateX(-100%) }
+    to { transform: translateX(0) }
+}
+
+@keyframes slideLeftOut {
+    from { transform: translateX(0) }
+    to { transform: translateX(100%) }
+}
+</style>
