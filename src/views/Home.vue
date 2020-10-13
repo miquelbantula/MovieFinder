@@ -1,22 +1,13 @@
 <template>
   <div>
-    <div class="my-4">
-      <SearchMovies />
+    <div class="mt-5">
+      <h1>Find movies, TV shows and more</h1>
     </div>
-
-    <div class="my-4">
-      <router-view />
-    </div>
-    
-     
-   
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-
-import SearchMovies from "@/components/SearchMovies";
 
 export default {
   name: "HomePage",
@@ -29,9 +20,5 @@ export default {
   computed: {
     ...mapGetters(["getMovieResults"])
   },
-
-  components: {
-    SearchMovies
-  }
 };
 </script>

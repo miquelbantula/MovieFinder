@@ -1,11 +1,15 @@
 <template>
   <div>
     <div class="movies">
-      <Slider>
+      <Slider v-if="getMovieResults">
         <SliderItem v-for="(slide, i) in numberOfSlides" :key="i" :idx="i">
           <MovieCard v-for="(movie, idx) in getMovieResults.slice(i, i + 4)" :key="idx" :movie="movie"></MovieCard>
         </SliderItem>
       </Slider>
+
+      <div v-else>
+          <h2>Sorry, no results were found. Please try a different search</h2>
+      </div>
     </div>
   </div>
 </template>

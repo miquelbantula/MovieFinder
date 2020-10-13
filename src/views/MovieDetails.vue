@@ -1,8 +1,9 @@
 <template>
   <div>
-    <router-link :to="{ name: 'Results' }">Back to results</router-link>
-    <MovieCard v-if="getMovieDetails" :movie="getMovieDetails" />
-    <pre>{{ getMovieDetails }}</pre>
+    <div class="my-4">
+      <router-link :to="{ name: 'Results' }" class="back-to-results">&#60;&nbsp; Back to results</router-link>
+    </div>
+    <MovieCard extended v-if="getMovieDetails" :movie="getMovieDetails" />
   </div>
 </template>
 
@@ -47,3 +48,11 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+.back-to-results {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+</style>

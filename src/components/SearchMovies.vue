@@ -1,7 +1,7 @@
 <template>
   <div class="search-movies">
     <form @submit.prevent="fetchMovieResults()">
-      <input type="text" v-model="title" name="searchMovie" placeholder="Find a movie" />
+      <input type="text" v-model="title" name="searchMovie" placeholder="Search movies, series, TV shows.." />
     </form>
   </div>
 </template>
@@ -47,9 +47,10 @@ export default {
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
+    background: $light-gray;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    border: none;
+    border-radius: 0.5rem;
   }
 }
 </style>

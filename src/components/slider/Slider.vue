@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="sliderItems.length" class="controls my-4">
+    <div v-if="sliderItems" class="controls my-4">
       <button class="btn btn-prev" @click="previousSlide">&#60;</button>
       <button class="btn btn-next" @click="nextSlide">&#62;</button>
     </div>
@@ -69,9 +69,9 @@ export default {
     align-items: center;
     justify-content: center;
     background: white;
-    border: 1px solid $gray;
+    border: 1px solid #545454;
     border-radius: 50%;
-    color: $gray;
+    color: #545454;
     font-size: 1rem;
   }
 

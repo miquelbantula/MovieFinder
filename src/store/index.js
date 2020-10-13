@@ -35,7 +35,6 @@ export default new Vuex.Store({
     fetchMovies({ state, commit }, { title }) {
       axios.get(`http://www.omdbapi.com/?apikey=${state.APIKey}&s=${title}`)
         .then(response => {
-          console.log('resp', response)
           commit('setMovies', response.data.Search);
         })
         .catch(function (error) {
@@ -46,7 +45,6 @@ export default new Vuex.Store({
     fetchMovieDetails({ state, commit }, { movieId }) {
       axios.get(`http://www.omdbapi.com/?apikey=${state.APIKey}&i=${movieId}`)
         .then(response => {
-          console.log('resp', response)
           commit('setMovieDetails', response.data);
         })
         .catch(function (error) {
