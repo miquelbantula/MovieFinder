@@ -5,14 +5,17 @@
     </div>
 
     <div class="my-4">
-      <MovieCards />
+      <router-view />
     </div>
+    
+     
+   
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import MovieCards from "@/components/MovieCards";
+
 import SearchMovies from "@/components/SearchMovies";
 
 export default {
@@ -28,7 +31,6 @@ export default {
   },
 
   components: {
-    MovieCards,
     SearchMovies
   }
 };

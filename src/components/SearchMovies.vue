@@ -1,12 +1,8 @@
 <template>
   <div class="search-movies">
-    <input
-      type="text"
-      v-model="title"
-      name="searchMovie"
-      placeholder="Find a movie"
-      @keyup="fetchMovieResults()"
-    />
+    <form @submit.prevent="fetchMovieResults()">
+      <input type="text" v-model="title" name="searchMovie" placeholder="Find a movie" />
+    </form>
   </div>
 </template>
 
@@ -26,6 +22,10 @@ export default {
     fetchMovieResults() {
       if (this.title.length > 3) {
         this.fetchMovies({ title: this.title });
+        // avoiding redundant navigation
+        if (this.$route.name !== "Results") {
+          this.$router.push({ name: "Results" });
+        }
       }
     }
   }
