@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="{ name: 'Home' }">Back to search</router-link>
+    <router-link :to="{ name: 'Results' }">Back to results</router-link>
     <MovieCard v-if="getMovieDetails" :movie="getMovieDetails" />
     <pre>{{ getMovieDetails }}</pre>
   </div>
