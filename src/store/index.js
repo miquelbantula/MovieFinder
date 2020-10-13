@@ -9,16 +9,27 @@ export default new Vuex.Store({
   state: {
     APIKey: 'a3eab8c1',
     movies: [],
+    movieDetails: {}
   },
   getters: {
     getMovieResults: (state) => {
       return state.movies;
+    },
+
+    getMovieDetails: (state) => {
+      return state.movieDetails;
     }
   },
   mutations: {
     setMovies: (state, movies) => {
       state.movies = movies;
-    }
+    },
+
+    setMovieDetails: (state, details) => {
+      // clear previous movieDetails
+      state.movieDetails = {};
+      state.movieDetails = details;
+    },
   },
   actions: {
     fetchMovies({ state, commit }, { title }) {
@@ -26,6 +37,17 @@ export default new Vuex.Store({
         .then(response => {
           console.log('resp', response)
           commit('setMovies', response.data.Search);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    },
+
+    fetchMovieDetails({ state, commit }, { movieId }) {
+      axios.get(`http://www.omdbapi.com/?apikey=${state.APIKey}&i=${movieId}`)
+        .then(response => {
+          console.log('resp', response)
+          commit('setMovieDetails', response.data);
         })
         .catch(function (error) {
           console.log(error);
