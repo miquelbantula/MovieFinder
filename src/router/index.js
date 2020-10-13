@@ -15,15 +15,16 @@ const routes = [
         path: 'results',
         component: () => import('../views/Results.vue'),
         props: true,
+      },
+      {
+        name: 'Details',
+        path: 'details/:movieId',
+        component: () => import('../views/MovieDetails.vue'),
+        props: true,
       }
     ]
   },
-  {
-    name: 'Details',
-    path: '/details/:movieId',
-    component: () => import('../views/MovieDetails.vue'),
-    props: true,
-  }
+  
 ]
 
 const router = new VueRouter({
